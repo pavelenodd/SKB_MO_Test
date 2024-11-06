@@ -1,13 +1,19 @@
 #include "client.h"
 
 void Client::sendMessage() {
-  // Тестовое сообщение для отправки
-  QByteArray test_message = "Request from the client";
+  if (!message_.isEmpty()) {
+    /* code */
 
-  // Отправляем сообщение на локальный адрес и порт, где запущен сервер
-  udp_socket_->writeDatagram(test_message, QHostAddress::LocalHost, port_);
+    // Тестовые сообщения для отправки
+    QByteArray test_message = "camera angle: 1";
+    QByteArray test_message1 = "horizontal indentation: 5";
+    QByteArray test_message2 = "horizontal indentation: 9";
 
-  qDebug() << "The client sent a message to the server:" << test_message;
+    // Отправляем сообщение на локальный адрес и порт, где запущен сервер
+    udp_socket_->writeDatagram(test_message, QHostAddress::LocalHost, port_);
+    udp_socket_->writeDatagram(test_message1, QHostAddress::LocalHost, port_);
+    udp_socket_->writeDatagram(test_message2, QHostAddress::LocalHost, port_);
+  }
 };
 void Client::handleResponse() {
   while (udp_socket_->hasPendingDatagrams()) {

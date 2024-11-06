@@ -1,7 +1,9 @@
 #pragma once
 #include <QCoreApplication>
 #include <QHostAddress>
+#include <QString>
 #include <QUdpSocket>
+#include <map>
 
 class Server : public QObject {
   Q_OBJECT
@@ -11,6 +13,11 @@ class Server : public QObject {
   QByteArray message_;        // Буфер для  сообщени
   QHostAddress sender_;       // Адрес отправителя
   quint16 sender_port_;       // Порт отправителя
+  std::map<QString, double> data_ = {
+      {"camera angle", 0},  // угол камеры по горизонтали
+      {"horizontal indentation", 0},  // отступ по горизонтали
+      {"vertical indentation", 0}     // отступ по вертикали
+  };
 
  public:
   Server(QObject* parent = nullptr) {

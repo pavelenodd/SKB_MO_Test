@@ -1,8 +1,10 @@
 #pragma once
 
 #include <QCoreApplication>
+#include <QString>
 #include <QTimer>
 #include <QUdpSocket>
+#include <map>
 
 class Client : public QObject {
   Q_OBJECT
@@ -10,7 +12,12 @@ class Client : public QObject {
   QUdpSocket* udp_socket_;  // Обект сокета для отправки и приема сообщений
   unsigned int port_ = 8080;  // Номер порта
   unsigned int delay_ = 2000;  // Задержка между отправкой сообщений 2сек
-  QByteArray message_;  // Буфер для  сообщени
+  QByteArray message_ = "tws";  // Буфер для  сообщени
+  std::map<QString, double> data_ = {
+      {"camera angle", 0},  // угол камеры по горизонтали
+      {"horizontal indentation", 0},  // отступ по горизонтали
+      {"vertical indentation", 0}     // отступ по вертикали
+  };
 
  public:
   Client(QObject* parent = nullptr) : QObject(parent) {

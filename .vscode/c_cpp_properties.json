@@ -7,7 +7,8 @@
                 "${vcpkgRoot}/x64-windows/include",
                 "D:/CppLibs/vcpkg/installed/x64-windows/include/Qt6",
                 "D:/CppLibs/vcpkg/installed/x64-windows/include/Qt6/QtCore",
-                "D:/CppLibs/vcpkg/installed/x64-windows/include/Qt6/QtNetwork"
+                "D:/CppLibs/vcpkg/installed/x64-windows/include/Qt6/QtNetwork",
+                "D:/CppLibs/vcpkg/installed/x64-windows/include/Qt6/QtWidgets"
             ],
             "defines": [
                 "_DEBUG",

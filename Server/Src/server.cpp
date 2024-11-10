@@ -1,3 +1,5 @@
+// server.cpp
+
 #include "server.h"
 
 void Server::handleIncomingDatagrams() {
@@ -10,6 +12,7 @@ void Server::handleIncomingDatagrams() {
     udp_socket_->readDatagram(message_.data(), message_.size(), &sender_,
                               &sender_port_);
     QString L_str = message_;
+
     if (L_str.contains("camera angle")) {
       message_.remove(0, 15);  // Удаление данных ключа и знака :
       data_.at("camera angle") = message_.toDouble();

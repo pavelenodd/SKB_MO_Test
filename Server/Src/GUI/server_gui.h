@@ -1,13 +1,15 @@
+// GUI/server_gui.h
+
 #pragma once
 
-class Server_GUI {
+#include <QDialog>
+#include "ui_server.h"
+class ServerGUI : public QDialog {
+  Q_OBJECT
  private:
-  /* data */
+  Ui::Dialog* ui;  // Указатель на сгенерированный UI класс
+
  public:
-  Server_GUI(/* args */);
-  ~Server_GUI();
+  explicit ServerGUI(QWidget* parent = nullptr);
+  ~ServerGUI();
 };
-
-Server_GUI::Server_GUI(/* args */) {}
-
-Server_GUI::~Server_GUI() {}

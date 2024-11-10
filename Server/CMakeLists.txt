@@ -4,7 +4,7 @@ add_executable(Server
     Src/main.cpp
     Src/server.cpp
     Src/server.h
-    #Src/GUI/server_gui.cpp
+    Src/GUI/server_gui.cpp
     Src/GUI/server_gui.h
 )
 # Указываем, что требуется обработать UI файл

@@ -5,7 +5,6 @@
 #include <QHostAddress>
 #include <QString>
 #include <QUdpSocket>
-#include <map>
 #include "server_gui.h"
 
 class Server : public QObject {
@@ -17,17 +16,13 @@ class Server : public QObject {
   QByteArray message_;        // Буфер для  сообщени
   QHostAddress sender_;       // Адрес отправителя
   quint16 sender_port_;       // Порт отправителя
-
-  std::map<QString, double> data_ = {
-      {"camera angle", 0},  // угол камеры по горизонтали
-      {"horizontal indentation", 0},  // отступ по горизонтали
-      {"vertical indentation", 0}     // отступ по вертикали
-  };
+  GUI_DATA* data_;            // Данные UI
 
  public:
   Server(QObject* parent = nullptr) {
     udp_socket_ = new QUdpSocket(this);
     server_gui_.show();  // Отображаем GUI
+    data_ = server_gui_.get_Ref_DATA();  // Получаем указатель на данные UI
     /**
      * Привязываем сокет к локальному адресу и порту
      */
@@ -45,10 +40,6 @@ class Server : public QObject {
   }
 
   ~Server() { delete udp_socket_; }
-
- signals:
-  void dataReceived(const QString& key,
-                    double value);  // Сигнал для передачи данных GUI
 
  private slots:
 

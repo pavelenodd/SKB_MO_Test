@@ -14,29 +14,25 @@ void Server::handleIncomingDatagrams() {
     QString L_str = message_;
 
     if (L_str.contains("camera angle")) {
-      message_.remove(0, 15);  // Удаление данных ключа и знака :
-      data_.at("camera angle") = message_.toDouble();
-      sucsess_response = "The data is correct. Data is \"camera angle\" ";
+      message_.remove(0, 14);  // Удаление данных ключа и знака :
+      data_->angle = message_.toDouble();
+      sucsess_response = "Data is \"camera angle\" " + message_;
       // DEBUG ^
     } else if (L_str.contains("horizontal indentation")) {
-      message_.remove(0, 25);  // Удаление данных ключа и знака :
-      data_.at("horizontal indentation") = message_.toDouble();
-      sucsess_response =
-          "The data is correct. Data is \"horizontal indentation\" ";
+      message_.remove(0, 24);  // Удаление данных ключа и знака :
+      data_->horizontal_indentation = message_.toDouble();
+      sucsess_response = "Data is \"horizontal indentation\" " + message_;
       // DEBUG ^
     } else if (L_str.contains("vertical indentation")) {
-      message_.remove(0, 23);  // Удаление данных ключа и знака :
-      data_.at("vertical indentation") = message_.toDouble();
-      sucsess_response =
-          "The data is correct. Data is \"vertical indentation\" ";
+      message_.remove(0, 22);  // Удаление данных ключа и знака :
+      data_->vertical_indentation = message_.toDouble();
+      sucsess_response = "Data is \"vertical indentation\" " + message_;
       // DEBUG ^
     } else {
       udp_socket_->writeDatagram(sucsess_response, sender_, sender_port_);
       message_.clear();
-      sucsess_response = "The data is incorrect! ";
+      sucsess_response = "The data is incorrect! " + message_;
     }
-
-    qDebug() << "The server received a message from the client:" << message_;
 
     // Отправляем ответное сообщение обратно клиенту по адресу и порту
     udp_socket_->writeDatagram(sucsess_response, sender_, sender_port_);

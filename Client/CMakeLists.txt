@@ -4,7 +4,7 @@ add_executable(Client
     Src/main.cpp
     Src/client.cpp
     Src/client.h
-    #Src/GUI/client_gui.cpp
+    Src/GUI/client_gui.cpp
     Src/GUI/client_gui.h
 )
 

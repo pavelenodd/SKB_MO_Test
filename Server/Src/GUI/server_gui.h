@@ -13,7 +13,7 @@ class ServerGUI : public QDialog {
 
  private:
   GUI_DATA ui_data_ = {3.5, 0, 0};  // Данные UI
-  Ui::Dialog* ui;  // Указатель на сгенерированный UI класс
+  Ui::Dialog* ui_;  // Указатель на сгенерированный UI класс
 
  public:
   explicit ServerGUI(QWidget* parent = nullptr);

@@ -1,12 +1,23 @@
 #pragma once
-class Client_GUI {
- private:
-  /* data */
- public:
-  Client_GUI(/* args */);
-  ~Client_GUI();
+// client_gui.h
+
+#include <QDialog>
+#include "ui_client.h"
+struct GUI_DATA {
+  double angle = 0.0;
+  double horizontal_indentation = 0.0;
+  double vertical_indentation = 0.0;
 };
 
-Client_GUI ::Client_GUI(/* args */) {}
+// Объявление класса Client_GUI
+class Client_GUI : public QDialog {
+  Q_OBJECT
 
-Client_GUI ::~Client_GUI() {}
+ private:
+  GUI_DATA ui_data_;  // Данные UI
+  Ui::Dialog* ui_;
+
+ public:
+  Client_GUI(QWidget* parent);
+  ~Client_GUI();
+};

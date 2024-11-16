@@ -1,14 +1,17 @@
 #pragma once
+// client.h
 
 #include <QCoreApplication>
 #include <QString>
 #include <QTimer>
 #include <QUdpSocket>
 #include <map>
+#include "GUI/client_gui.h"
 
 class Client : public QObject {
   Q_OBJECT
  private:
+  Client_GUI* gui_;
   QUdpSocket* udp_socket_;  // Обект сокета для отправки и приема сообщений
   unsigned int port_ = 8080;  // Номер порта
   unsigned int delay_ = 2000;  // Задержка между отправкой сообщений 2сек
@@ -22,6 +25,10 @@ class Client : public QObject {
  public:
   Client(QObject* parent = nullptr) : QObject(parent) {
     udp_socket_ = new QUdpSocket(this);
+
+    // Создаем и отображаем GUI
+    gui_ = new Client_GUI(nullptr);
+    gui_->show();
 
     // Подключаем слот для обработки входящих сообщений
     connect(udp_socket_, &QUdpSocket::readyRead, this, &Client::handleResponse);

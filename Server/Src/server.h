@@ -11,7 +11,7 @@ class Server : public QObject {
   Q_OBJECT
  private:
   QUdpSocket* udp_socket_;  // Обект сокета для отправки и приема сообщений
-  ServerGUI server_gui_;    // Объект GUI
+  ServerGUI gui_;           // Объект GUI
   unsigned int port_ = 8080;  // Номер порта
   QByteArray message_;        // Буфер для  сообщени
   QHostAddress sender_;       // Адрес отправителя
@@ -21,8 +21,8 @@ class Server : public QObject {
  public:
   Server(QObject* parent = nullptr) {
     udp_socket_ = new QUdpSocket(this);
-    server_gui_.show();  // Отображаем GUI
-    data_ = server_gui_.get_Ref_DATA();  // Получаем указатель на данные UI
+    gui_.show();                  // Отображаем GUI
+    data_ = gui_.get_Ref_DATA();  // Получаем указатель на данные UI
     /**
      * Привязываем сокет к локальному адресу и порту
      */

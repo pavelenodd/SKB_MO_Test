@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "qudpsocket": "cpp"
+        "qudpsocket": "cpp",
+        "qdialog": "cpp",
+        "qwidget": "cpp"
     }
 }

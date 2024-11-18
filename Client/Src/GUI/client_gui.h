@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QGraphicsScene>
 #include <QSvgRenderer>
+
 #include <QtSvgWidgets/QGraphicsSvgItem>
 
 #include "ui_client.h"

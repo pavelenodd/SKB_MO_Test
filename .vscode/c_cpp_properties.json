@@ -5,10 +5,10 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "${vcpkgRoot}/x64-windows/include",
-                "D:/CppLibs/vcpkg/installed/x64-windows/include/Qt6/QtWidgets",
-                "D:/CppLibs/vcpkg/installed/x64-windows/include/Qt6/QtSvg",
-                "D:/CppLibs/vcpkg/installed/x64-windows/include/Qt6/**",
-                "D:/CppLibs/vcpkg/installed/x64-windows/include/Qt6"
+                "${vcpkgRoot}/x64-windows-static/include",
+                "C:/msys64/mingw64/include/qt6",
+                "C:/msys64/mingw64/include/qt6/QtSvg",
+                "C:/msys64/mingw64/include/qt6/QtWidgets"
             ],
             "defines": [
                 "_DEBUG",
@@ -17,7 +17,8 @@
             ],
             "windowsSdkVersion": "10.0.22621.0",
             "compilerPath": "C:/msys64/mingw64/bin/g++.exe",
-            "intelliSenseMode": "${default}"
+            "intelliSenseMode": "${default}",
+            "cppStandard": "c++20"
         }
     ],
     "version": 4

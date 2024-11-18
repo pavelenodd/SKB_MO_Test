@@ -23,6 +23,7 @@ class ServerGUI : public QDialog {
    * @brief Возвращает указатель данные UI
    */
   GUI_DATA* get_Ref_DATA() { return &ui_data_; }
+  Ui::Dialog* get_Ref_UI() const { return ui_; }
 
  private slots:
 

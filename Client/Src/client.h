@@ -2,10 +2,11 @@
 // client.h
 
 #include <QCoreApplication>
+#include <QJsonDocument>
+#include <QJsonObject>
 #include <QString>
 #include <QTimer>
 #include <QUdpSocket>
-#include <map>
 #include "GUI/client_gui.h"
 
 class Client : public QObject {
@@ -14,13 +15,10 @@ class Client : public QObject {
   Client_GUI* gui_;
   QUdpSocket* udp_socket_;  // Обект сокета для отправки и приема сообщений
   unsigned int port_ = 8080;  // Номер порта
-  unsigned int delay_ = 2000;  // Задержка между отправкой сообщений 2сек
-  QByteArray message_ = "tws";  // Буфер для  сообщени
-  std::map<QString, double> data_ = {
-      {"camera angle", 0},  // угол камеры по горизонтали
-      {"horizontal indentation", 0},  // отступ по горизонтали
-      {"vertical indentation", 0}     // отступ по вертикали
-  };
+  unsigned int delay_ = 200;  // Задержка между пингом коннекта  0.2сек
+  QByteArray message_;  // Буфер для  сообщени
+  GUI_DATA* data_;      // Данные UI
+  QTimer* timer_;  // Таймер, который отправляет запросы на сервер
 
  public:
   Client(QObject* parent = nullptr) : QObject(parent) {
@@ -29,17 +27,19 @@ class Client : public QObject {
     // Создаем и отображаем GUI
     gui_ = new Client_GUI(nullptr);
     gui_->show();
+    gui_->initGUI();
+    data_ = gui_->get_Ref_DATA();
 
     // Подключаем слот для обработки входящих сообщений
     connect(udp_socket_, &QUdpSocket::readyRead, this, &Client::handleResponse);
 
-    // Таймер, который отправлять запрос на сервер
-    QTimer* timer = new QTimer(this);
+    // Таймер, который отправляет запросы на сервер
+    timer_ = new QTimer(this);
 
     // Соединяем сигнал таймера с функцией отправки сообщения
-    connect(timer, &QTimer::timeout, this, &Client::sendMessage);
+    connect(timer_, &QTimer::timeout, this, &Client::sendMessage);
 
-    timer->start(delay_);
+    timer_->start(delay_);
   }
   ~Client() { delete udp_socket_; }
  private slots:

@@ -1,7 +1,11 @@
 {
     "files.associations": {
-        "qudpsocket": "cpp",
-        "qdialog": "cpp",
-        "qwidget": "cpp"
+        "deque": "cpp",
+        "list": "cpp",
+        "string": "cpp",
+        "vector": "cpp",
+        "qgraphicssvgitem": "cpp",
+        "new": "cpp",
+        "qcoreapplication": "cpp"
     }
 }

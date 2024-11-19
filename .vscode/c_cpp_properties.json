@@ -8,7 +8,9 @@
                 "${vcpkgRoot}/x64-windows-static/include",
                 "C:/msys64/mingw64/include/qt6",
                 "C:/msys64/mingw64/include/qt6/QtSvg",
-                "C:/msys64/mingw64/include/qt6/QtWidgets"
+                "C:/msys64/mingw64/include/qt6/QtWidgets",
+                "C:/msys64/mingw64/include/qt6/QtCore",
+                "C:/msys64/mingw64/include/qt6/QtNetwork"
             ],
             "defines": [
                 "_DEBUG",

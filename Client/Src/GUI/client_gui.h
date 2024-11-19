@@ -9,9 +9,9 @@
 
 #include "ui_client.h"
 struct GUI_DATA {
-  double angle = 0.0;
-  double horizontal_indentation = 0.0;
-  double vertical_indentation = 0.0;
+  double angle = 0.0;                   // угол
+  double horizontal_indentation = 0.0;  // отступ по горизонтали
+  double vertical_indentation = 0.0;  // отступ по вертикали
 };
 
 // Объявление класса Client_GUI

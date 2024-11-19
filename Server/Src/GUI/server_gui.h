@@ -1,29 +1,26 @@
-// GUI/server_gui.h
 #pragma once
 
 #include <QDialog>
 #include "ui_server.h"
 struct GUI_DATA {
-  double angle = 0.0;
-  double horizontal_indentation = 0.0;
-  double vertical_indentation = 0.0;
+  double angle = 0.0;                   // Угол
+  double horizontal_indentation = 0.0;  // горизонтальное смещение
+  double vertical_indentation = 0.0;  // вертикальное смещение
 };
 class ServerGUI : public QDialog {
   Q_OBJECT
 
  private:
-  GUI_DATA ui_data_ = {3.5, 0, 0};  // Данные UI
+  GUI_DATA ui_data_;  // Данные UI
   Ui::Dialog* ui_;  // Указатель на сгенерированный UI класс
 
  public:
   explicit ServerGUI(QWidget* parent = nullptr);
 
   ~ServerGUI();
-  /**
-   * @brief Возвращает указатель данные UI
-   */
-  GUI_DATA* get_Ref_DATA() { return &ui_data_; }
-  Ui::Dialog* get_Ref_UI() const { return ui_; }
+
+  GUI_DATA* get_Ref_DATA();
+  Ui::Dialog* get_Ref_UI() const;
 
  private slots:
 
@@ -33,4 +30,3 @@ class ServerGUI : public QDialog {
 
   void onVerticalSliderValueChanged(double L_value);
 };
-

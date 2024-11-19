@@ -1,13 +1,12 @@
-// server.cpp
-
 #include "server.h"
-
+/**
+ * \brief Обработчик входящих данных сообщений (Datagrams)
+ */
 void Server::handleIncomingDatagrams() {
-  QByteArray sucsess_response;  // сообщение клиенту о получении сообщения
+  QByteArray sucsess_response;  // сообщение клиенту
   while (udp_socket_->hasPendingDatagrams()) {
     message_.resize(udp_socket_->pendingDatagramSize());
 
-    // TODO перевести в отдельный метод
     //  Читаем сообщение и сохраняем адрес отправителя и порт
     udp_socket_->readDatagram(message_.data(), message_.size(), &sender_,
                               &sender_port_);
@@ -17,16 +16,17 @@ void Server::handleIncomingDatagrams() {
       // подтверждения соединения
       sucsess_response = "ACK";
       qDebug() << "Connection acknowledged from" << sender_.toString() << ":"
-               << sender_port_;  // Останавливаем таймер, так как подключение
-                                 // подтверждено
+               << sender_port_;
+      // Останавливаем таймер, так как подключение подтверждено
       if (timer_->isActive()) {
         timer_->stop();
         qDebug() << "Timer stopped after successful connection.";
       }
+      // передача сообщения с начальными настройками клиенту
+      sendMessage(false);
     }
 
     else {
-      udp_socket_->writeDatagram(sucsess_response, sender_, sender_port_);
       message_.clear();
       sucsess_response = "The data is incorrect! " + message_;
     }
@@ -35,6 +35,10 @@ void Server::handleIncomingDatagrams() {
     udp_socket_->writeDatagram(sucsess_response, sender_, sender_port_);
   }
 };
+/**
+ *\brief Метод для отправки сообщения серверу
+ *\param isConnectedMessage_ Флаг тестового сообщения для подтверждения коннекта
+ */
 void Server::sendMessage(bool isConnectedMessage_) {
   if (isConnectedMessage_) {
     message_ = "ACK";

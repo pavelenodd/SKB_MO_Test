@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 
-find_package(Qt6 REQUIRED COMPONENTS Core Network Widgets Svg Gui)
+find_package(Qt6 REQUIRED COMPONENTS Core Network Widgets Gui Svg)
 
 # Добавляем сабпроекты для сервера и клиента
 add_subdirectory(Server)

@@ -32,7 +32,7 @@ target_sources(Client PRIVATE
 target_include_directories(Client PRIVATE ${CMAKE_CURRENT_BINARY_DIR} Src/GUI)
 
 # Подключаем библиотеки Qt
-target_link_libraries(Client PRIVATE Qt6::Core Qt6::Network Qt6::Widgets Qt6::Svg Qt6::Gui)
+target_link_libraries(Client PRIVATE Qt6::Core Qt6::Network Qt6::Widgets Qt6::Gui Qt6::Svg)
 
 # Включаем автоматическую генерацию MOC-файлов
 set_target_properties(Client PROPERTIES AUTOMOC ON)
